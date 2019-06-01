@@ -1,0 +1,46 @@
+name: notion-ubuntu
+version: '1.0.0'
+summary: Notion For Ubuntu
+description: Notion For Ubuntu
+
+grade: stable
+confinement: strict
+
+parts:
+  electron-app:
+    source: app/
+    plugin: nodejs
+
+    stage-packages:
+      - libnotify4
+      - libappindicator1
+      - libxtst6
+      - libnss3
+      - libxss1
+      - fontconfig-config
+      - gconf2
+      - libasound2
+      - pulseaudio
+
+    after:
+      - desktop-gtk2
+
+    build: node_modules/.bin/electron-builder
+    install: |
+      mkdir $SNAPCRAFT_PART_INSTALL/app
+      mv dist/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+    prime:
+      - -node_modules
+
+apps:
+  notion-ubuntu:
+    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/notion-ubuntu
+    plugs:
+      - home
+      - x11
+      - unity7
+      - browser-support
+      - network
+      - gsettings
+      - pulseaudio
+      - opengl

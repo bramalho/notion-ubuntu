@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Notion
+Icon=${SNAP}/meta/gui/icon.png
+Categories=Office;Utility;
+Exec=notion-ubuntu
+Terminal=false

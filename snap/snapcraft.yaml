@@ -8,6 +8,7 @@ confinement: strict
 
 parts:
   electron-app:
+    source: .
     plugin: nodejs
     source: app/
 
@@ -39,10 +40,4 @@ apps:
     command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/notion
     plugs:
       - home
-      - x11
-      - unity7
       - browser-support
-      - network
-      - gsettings
-      - pulseaudio
-      - opengl

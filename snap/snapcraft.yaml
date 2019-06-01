@@ -8,9 +8,8 @@ confinement: strict
 
 parts:
   electron-app:
-    source: app/
     plugin: nodejs
-
+    source: app/
     stage-packages:
       - libnotify4
       - libappindicator1
@@ -19,15 +18,14 @@ parts:
       - libxss1
       - fontconfig-config
       - gconf2
-
+      - libasound2
+      - pulseaudio
     after:
       - desktop-gtk2
-
-    override-build: |
-      node_modules/.bin/electron-builder
+    build: node_modules/.bin/electron-builder
+    install: |
       mkdir $SNAPCRAFT_PART_INSTALL/app
       mv dist/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
-
     prime:
       - -node_modules
 

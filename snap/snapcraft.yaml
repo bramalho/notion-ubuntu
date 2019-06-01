@@ -1,4 +1,4 @@
-name: notion-ubuntu
+name: notion
 version: '1.0.0'
 summary: Notion For Ubuntu
 description: Notion For Ubuntu
@@ -19,22 +19,21 @@ parts:
       - libxss1
       - fontconfig-config
       - gconf2
-      - libasound2
-      - pulseaudio
 
     after:
       - desktop-gtk2
 
-    build: node_modules/.bin/electron-builder
-    install: |
+    override-build: |
+      node_modules/.bin/electron-builder
       mkdir $SNAPCRAFT_PART_INSTALL/app
       mv dist/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+
     prime:
       - -node_modules
 
 apps:
-  notion-ubuntu:
-    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/notion-ubuntu
+  notion:
+    command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/notion
     plugs:
       - home
       - x11

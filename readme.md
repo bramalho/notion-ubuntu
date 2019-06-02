@@ -12,6 +12,8 @@ docker pull snapcore/snapcraft
 ## Build
 ```bash
 cd snap
+```
+```bash
 docker run --rm -v "$PWD":/build -w /build snapcore/snapcraft bash \
       -c "apt update && snapcraft"
 ```

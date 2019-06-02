@@ -3,4 +3,5 @@ snap/.snapcraft/
 parts/
 prime/
 stage/
+snap/app
 *.snap

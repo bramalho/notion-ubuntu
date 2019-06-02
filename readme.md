@@ -1,17 +1,27 @@
 # Notion
 > Notion web app for Ubuntu
 
-### Build
+## Set up
 ```bash
-snapcraft cleanbuild
+ln -s -r app snap/app
+```
+```bash
+docker pull snapcore/snapcraft
 ```
 
-### Install
+## Build
+```bash
+cd snap
+docker run --rm -v "$PWD":/build -w /build snapcore/snapcraft bash \
+      -c "apt update && snapcraft"
+```
+
+## Install
 ```bash
 snap install --dangerous notion_1.0.0_amd64.snap
 ```
 
-### Run
+## Run
 ```bash
 notion
 ```
